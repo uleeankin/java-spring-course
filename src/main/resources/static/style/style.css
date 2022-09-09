@@ -1,0 +1,33 @@
+body {
+    background: #232425;
+}
+
+h1 {
+    text-align: center;
+    color: whitesmoke;
+    font-family: "Montserrat Thin";
+    font-size: 400%;
+    margin-top: 3%;
+    letter-spacing: 10px;
+}
+
+.accent-text {
+    color: whitesmoke;
+    font-family: "Montserrat Thin";
+    font-size: 150%;
+    letter-spacing: 10px;
+    margin-left: 3%;
+    display: inline;
+    border-bottom: 1px solid whitesmoke;
+}
+
+.text-td {
+    vertical-align: bottom;
+    padding-bottom: 5%;
+}
+
+.images {
+    text-align: right;
+    margin-right: 5%;
+}
+
