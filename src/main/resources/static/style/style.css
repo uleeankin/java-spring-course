@@ -1,5 +1,8 @@
 body {
     background: #232425;
+    color: whitesmoke;
+    font-family: "Montserrat Thin";
+    letter-spacing: 10px;
 }
 
 h1 {
@@ -8,6 +11,12 @@ h1 {
     font-family: "Montserrat Thin";
     font-size: 400%;
     margin-top: 3%;
+    letter-spacing: 10px;
+}
+
+h3 {
+    color: whitesmoke;
+    font-family: "Montserrat Thin";
     letter-spacing: 10px;
 }
 
@@ -31,3 +40,63 @@ h1 {
     margin-right: 5%;
 }
 
+.link-to-order {
+    text-align: right;
+    padding-right: 2%;
+}
+
+a{
+    text-decoration: none;
+    color: whitesmoke;
+    font-family: "Montserrat Thin";
+    font-size: 80%;
+    letter-spacing: 10px;
+    margin-left: 3%;
+    display: inline;
+    border-bottom: 1px solid whitesmoke;
+}
+
+.images-box {
+    text-align: center;
+}
+
+span.validationError {
+	color: red;
+}
+
+.grid:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+div.services-group:nth-child(odd) {
+	float: left;
+	padding-right: 20px;
+	padding-left: 25%;
+}
+
+div.services-group:nth-child(even) {
+    float: left;
+	padding-right: 0;
+}
+
+div.services-group {
+	width: 50%;
+}
+
+.submit-button {
+    pudding-right: 5%;
+    horizontal-align: right;
+    width: 500px;
+}
+
+.no-error {
+    color: #232425;
+}

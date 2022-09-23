@@ -1,4 +1,4 @@
-package ru.rsreu.photostudio;
+package ru.rsreu.photostudio.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
