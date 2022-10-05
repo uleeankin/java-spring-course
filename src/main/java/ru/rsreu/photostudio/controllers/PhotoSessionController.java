@@ -42,7 +42,6 @@ public class PhotoSessionController {
         Type[] types = Services.Type.values();
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(), filterByType(services, type));
-
         }
     }
 
