@@ -12,7 +12,11 @@
     <form method="POST" th:action="@{/orders}" th:object="${order}">
         <h1>ORDER YOUR PHOTO SESSION</h1>
 
+        <h3>Your photo sessions in order:</h3>
         <a th:href="@{/services}" id="another">Create another photo session</a><br/>
+        <ul>
+            <li th:each="photoSession : ${order.photoSessions}"><span th:text="${photoSession.name}">photo session name</span></li>
+        </ul>
 
         <div th:if="${#fields.hasErrors()}">
             <span class="validationError">
