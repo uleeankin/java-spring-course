@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Photo session creation</title>
@@ -11,7 +11,12 @@
     <p class="images-box">
         <img th:src="@{/images/photo2.jpg}"/>
     </p>
+    <h2>Do you want a photo session, <span th:text="${user.fullName}">NAME</span>?</h2>
     <h1>CREATE YOUR PHOTO SESSION</h1>
+
+    <form method="POST" th:action="@{/logout}" id="logoutForm">
+        <input type="submit" value="Logout"/>
+    </form>
 
     <form method="POST"th:object="${services}">
 

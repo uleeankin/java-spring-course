@@ -24,6 +24,9 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @ManyToOne
+    private User user;
+
     @NotBlank(message="Name is required")
     private String name;
 

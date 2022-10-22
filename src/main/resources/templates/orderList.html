@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order list</title>
+    <link rel="stylesheet" href="/static/style/style.css" th:href="@{/style/style.css}"/>
+</head>
+<body>
+<h1>Your orders</h1>
+
+    <ul>
+        <li th:each="order : ${orders}">
+            <span th:text="${order.placedAt}">DATE</span> -
+            <span th:text="${order.name}">NAME</span>
+            <ul>
+                <li th:each="photoSession : ${order.photoSessions}">
+                    <span th:text="${photoSession.name}"></span> :
+                    <span th:each="service : ${photoSession.services}">
+                  <span th:text="${service.name}">SERVICE</span>,
+                </span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+</body>
+</html>

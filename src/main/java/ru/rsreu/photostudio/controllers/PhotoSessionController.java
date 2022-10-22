@@ -10,10 +10,13 @@ import ru.rsreu.photostudio.models.Order;
 import ru.rsreu.photostudio.models.PhotoSession;
 import ru.rsreu.photostudio.models.Services;
 import ru.rsreu.photostudio.models.Services.Type;
+import ru.rsreu.photostudio.models.User;
 import ru.rsreu.photostudio.repositories.PhotoSessionRepository;
 import ru.rsreu.photostudio.repositories.ServiceRepository;
+import ru.rsreu.photostudio.repositories.UserRepository;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,12 +29,15 @@ public class PhotoSessionController {
 
     private final ServiceRepository serviceRepository;
     private final PhotoSessionRepository photoSessionRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public PhotoSessionController(ServiceRepository serviceRepository,
-                                  PhotoSessionRepository photoSessionRepository) {
+                                  PhotoSessionRepository photoSessionRepository,
+                                  UserRepository userRepository) {
         this.serviceRepository = serviceRepository;
         this.photoSessionRepository = photoSessionRepository;
+        this.userRepository = userRepository;
     }
 
     @ModelAttribute(name = "order")
@@ -44,33 +50,9 @@ public class PhotoSessionController {
         return new PhotoSession();
     }
 
-    /*@ModelAttribute
-    public void addPhotoSessionServices(Model model) {
-        List<Service> services = Arrays.asList(
-            new Service("STLO", "Studio", Type.LOCATION),
-            new Service("NALO", "Nature", Type.LOCATION),
-            new Service("CILO", "City", Type.LOCATION),
-            new Service("FAFA", "Family", Type.FASHION),
-            new Service("CUFA", "Customise", Type.FASHION),
-            new Service("CAFA", "Casual", Type.FASHION),
-            new Service("POSH", "Portrait", Type.SHOT),
-            new Service("GESH", "General", Type.SHOT),
-            new Service("MESH", "Medium", Type.SHOT),
-            new Service("PHVI", "Photo", Type.VIEW),
-            new Service("VIVI", "Video", Type.VIEW),
-            new Service("BOVI", "Both", Type.VIEW)
-        );
-
-        Type[] types = Service.Type.values();
-        for (Type type : types) {
-            model.addAttribute(type.toString().toLowerCase(), filterByType(services, type));
-        }
-    }*/
-
-
 
     @GetMapping
-    public String showServicesPage(Model model) {
+    public String showServicesPage(Model model, Principal principal) {
         List<Services> services = new ArrayList<>();
         serviceRepository.findAll().forEach(services::add);
 
@@ -79,6 +61,10 @@ public class PhotoSessionController {
             model.addAttribute(type.toString().toLowerCase(),
                     filterByType(services, type));
         }
+
+        String username = principal.getName();
+        User user = userRepository.findByUsername(username);
+        model.addAttribute("user", user);
 
         return "services";
     }
