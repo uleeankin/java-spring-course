@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -11,7 +11,7 @@
     <h1>LOGIN</h1>
     <p class="images"><img th:src="@{/images/photo1.jpeg}" height="50%" width="50%"/></p>
 
-    <div th:if="${error}">
+    <div th:if="${param.error}">
         <p>Unable to login. Check your username and password.</p>
     </div>
 

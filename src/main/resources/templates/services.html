@@ -8,71 +8,71 @@
     <link rel="stylesheet" href="/static/style/style.css" th:href="@{/style/style.css}"/>
 </head>
 <body>
-    <p class="images-box">
-        <img th:src="@{/images/photo2.jpg}"/>
-    </p>
-    <h2>Do you want a photo session, <span th:text="${user.fullName}">NAME</span>?</h2>
-    <h1>CREATE YOUR PHOTO SESSION</h1>
+<p class="images-box">
+    <img th:src="@{/images/photo2.jpg}"/>
+</p>
+<h2>Do you want a photo session, <span th:text="${user.fullName}">NAME</span>?</h2>
+<h1>CREATE YOUR PHOTO SESSION</h1>
 
-    <form method="POST" th:action="@{/logout}" id="logoutForm">
-        <input type="submit" value="Logout"/>
-    </form>
+<form method="POST" th:action="@{/logout}" id="logoutForm">
+    <input type="submit" value="Logout"/>
+</form>
 
-    <form method="POST"th:object="${services}">
+<form method="POST"th:object="${services}" th:action="@{/services}">
 
         <span class="validationError"
-                th:if="${#fields.hasErrors('services')}"
-                th:errors="*{services}">Services error</span>
+              th:if="${#fields.hasErrors('services')}"
+              th:errors="*{services}">Services error</span>
 
-        <div class="grid">
+    <div class="grid">
 
-            <div class="services-group" id="locations">
-                <h3>Choose location:</h3>
-                <div th:each="service : ${location}">
-                    <input name="services" type="checkbox" th:value="${service.id}" />
-                    <span th:text="${service.name}">SERVICE</span><br/>
-                </div>
-            </div>
-
-            <div class="services-group" id="fashions">
-                <h3>Choose fashion:</h3>
-                <div th:each="service : ${fashion}">
-                    <input name="services" type="checkbox" th:value="${service.id}" />
-                    <span th:text="${service.name}">SERVICE</span><br/>
-                </div>
-            </div>
-
-            <div class="services-group" id="shots">
-                <h3>Choose shot:</h3>
-                <div th:each="service : ${shot}">
-                    <input name="services" type="checkbox" th:value="${service.id}" />
-                    <span th:text="${service.name}">SERVICE</span><br/>
-                </div>
-            </div>
-
-            <div class="services-group" id="views">
-                <h3>Choose view:</h3>
-                <div th:each="service : ${view}">
-                    <input name="services" type="checkbox" th:value="${service.id}" />
-                    <span th:text="${service.name}">SERVICE</span><br/>
-                </div>
+        <div class="services-group" id="locations">
+            <h3>Choose location:</h3>
+            <div th:each="service : ${location}">
+                <input name="services" type="checkbox" th:value="${service.id}" />
+                <span th:text="${service.name}">SERVICE</span><br/>
             </div>
         </div>
 
-            <table>
-                <tr>
-                    <td><h3>Name your photo session:</h3></td>
-                    <td><input type="text" th:field="*{name}"/></td>
-                    <td class="no-error"><span th:text="${#fields.hasErrors('name')}">XXX</span></td>
-                    <td>
+        <div class="services-group" id="fashions">
+            <h3>Choose fashion:</h3>
+            <div th:each="service : ${fashion}">
+                <input name="services" type="checkbox" th:value="${service.id}" />
+                <span th:text="${service.name}">SERVICE</span><br/>
+            </div>
+        </div>
+
+        <div class="services-group" id="shots">
+            <h3>Choose shot:</h3>
+            <div th:each="service : ${shot}">
+                <input name="services" type="checkbox" th:value="${service.id}" />
+                <span th:text="${service.name}">SERVICE</span><br/>
+            </div>
+        </div>
+
+        <div class="services-group" id="views">
+            <h3>Choose view:</h3>
+            <div th:each="service : ${view}">
+                <input name="services" type="checkbox" th:value="${service.id}" />
+                <span th:text="${service.name}">SERVICE</span><br/>
+            </div>
+        </div>
+    </div>
+
+    <table>
+        <tr>
+            <td><h3>Name your photo session:</h3></td>
+            <td><input type="text" th:field="*{name}"/></td>
+            <td class="no-error"><span th:text="${#fields.hasErrors('name')}">XXX</span></td>
+            <td>
                         <span class="validationError"
                               th:if="${#fields.hasErrors('name')}"
                               th:errors="*{name}">Name Error</span>
-                    </td>
-                    <td class="submit-button"><button>Submit your photo session</button></td>
-                </tr>
-            </table>
-    </form>
+            </td>
+            <td class="submit-button"><button>Submit your photo session</button></td>
+        </tr>
+    </table>
+</form>
 
 </body>
 </html>

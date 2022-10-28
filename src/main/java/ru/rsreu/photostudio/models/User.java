@@ -12,7 +12,7 @@ import java.util.Collections;
 
 @Entity
 @Data
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 @RequiredArgsConstructor
 @Table(name = "users")
 public class User implements UserDetails {
@@ -32,16 +32,6 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
-    }
-
-    @Override
-    public String getPassword() {
-        return this.username;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.password;
     }
 
     @Override

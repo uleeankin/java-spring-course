@@ -40,32 +40,37 @@ public class PhotoSessionController {
         this.userRepository = userRepository;
     }
 
-    @ModelAttribute(name = "order")
-    public Order order() {
-        return new Order();
-    }
-
-    @ModelAttribute(name = "services")
-    public PhotoSession design() {
-        return new PhotoSession();
-    }
-
-
-    @GetMapping
-    public String showServicesPage(Model model, Principal principal) {
+    @ModelAttribute
+    public void addIngredientsToModel(Model model) {
         List<Services> services = new ArrayList<>();
-        serviceRepository.findAll().forEach(services::add);
+        serviceRepository.findAll().forEach(i -> services.add(i));
 
         Type[] types = Services.Type.values();
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(),
                     filterByType(services, type));
         }
+    }
 
+    @ModelAttribute(name = "order")
+    public Order order() {
+        return new Order();
+    }
+
+    @ModelAttribute(name = "services")
+    public PhotoSession photoSession() {
+        return new PhotoSession();
+    }
+
+    @ModelAttribute(name = "user")
+    public User user(Principal principal) {
         String username = principal.getName();
         User user = userRepository.findByUsername(username);
-        model.addAttribute("user", user);
+        return user;
+    }
 
+    @GetMapping
+    public String showServicesPage() {
         return "services";
     }
 
@@ -73,6 +78,9 @@ public class PhotoSessionController {
     public String processDesign(@Valid PhotoSession photoSession,
                                 Errors error,
                                 @ModelAttribute Order order) {
+
+        log.info("------ Saving photo session");
+
         if (error.hasErrors()) {
             return "services";
         }
