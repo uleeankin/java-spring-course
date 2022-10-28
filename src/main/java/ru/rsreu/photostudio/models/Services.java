@@ -1,26 +1,21 @@
 package ru.rsreu.photostudio.models;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import lombok.*;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
 
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-@Entity
+@Table("services")
 public class Services {
 
-    @Id
-    private final String id;
-    private final String name;
-    private final Type type;
+    @PrimaryKey
+    private String id;
+    private String name;
+    private Type type;
 
-    public static enum Type {
+    public enum Type {
         LOCATION,
         FASHION,
         SHOT,

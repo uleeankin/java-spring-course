@@ -42,7 +42,6 @@ public class OrderController {
         this.orderRepository.save(order);
         sessionStatus.setComplete();
 
-        //log.info("Order submitted: " + order);
         return "redirect:/";
     }
 }

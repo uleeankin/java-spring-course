@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Photo session creation</title>
@@ -13,7 +13,7 @@
     </p>
     <h1>CREATE YOUR PHOTO SESSION</h1>
 
-    <form method="POST"th:object="${services}">
+    <form method="POST" th:object="${photoSession}">
 
         <span class="validationError"
                 th:if="${#fields.hasErrors('services')}"

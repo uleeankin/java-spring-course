@@ -1,28 +1,31 @@
 package ru.rsreu.photostudio.models;
 
-import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+import com.datastax.oss.driver.api.core.uuid.Uuids;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
+import org.springframework.data.cassandra.core.mapping.Column;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
+import ru.rsreu.photostudio.UDT.PhotoSessionUDT;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Data
-@Entity
-@Table(name = "order_photo_session")
+@Table("orders")
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @PrimaryKey
+    private UUID id = Uuids.timeBased();
 
     @NotBlank(message="Name is required")
     private String name;
@@ -37,17 +40,12 @@ public class Order implements Serializable {
     @Digits(integer=3, fraction=0, message="Invalid CVV")
     private String ccCVV;
 
-    private Date placedAt;
+    private Date placedAt = new Date();
 
-    @PrePersist
-    public void placedAt() {
-        this.placedAt = new Date();
-    }
+    @Column("photosessions")
+    private List<PhotoSessionUDT> photoSessions = new ArrayList<>();
 
-    @ManyToMany(targetEntity = PhotoSession.class)
-    private List<PhotoSession> photoSessions = new ArrayList<>();
-
-    public void addPhotoSession(PhotoSession photoSession) {
+    public void addPhotoSession(PhotoSessionUDT photoSession) {
         this.photoSessions.add(photoSession);
     }
 }
