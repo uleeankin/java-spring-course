@@ -1,18 +1,14 @@
 package ru.rsreu.photostudio.models;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 @Data
-@RequiredArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-@Entity
+@Document
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 public class Services {
 
     @Id
@@ -20,7 +16,7 @@ public class Services {
     private final String name;
     private final Type type;
 
-    public static enum Type {
+    public enum Type {
         LOCATION,
         FASHION,
         SHOT,
