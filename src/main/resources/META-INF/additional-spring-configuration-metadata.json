@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "photo.session.order.pageSize",
+      "type": "java.lang.String",
+      "description": "Maximum displayed orders number."
+    }
+  ] }

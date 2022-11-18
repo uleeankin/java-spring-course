@@ -10,7 +10,7 @@ import ru.rsreu.photostudio.models.User;
 import ru.rsreu.photostudio.repositories.ServiceRepository;
 import ru.rsreu.photostudio.repositories.UserRepository;
 
-//@Profile("!prod")
+@Profile("!prod")
 @Configuration
 public class DatabaseConfig {
 
